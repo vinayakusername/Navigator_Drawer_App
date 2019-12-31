@@ -1,6 +1,6 @@
 //Created by Ganesh Raut......
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';//this package conatain lowest level utility classes and functions used by other layers of flutter framework. 
 import 'package:flutter/material.dart'; // this package is used to implement material design components.
 import 'package:navigation_drawer_app/widgets_view/Page1.dart'; // this is used to import Page1 view widget.
 import 'package:navigation_drawer_app/widgets_view/Page2.dart'; // this is used to import Page2 view widget.
@@ -8,19 +8,23 @@ import 'package:navigation_drawer_app/widgets_view/Page3.dart'; //this is used t
 import 'dart:io';
 void main()=>runApp(new MyApp()); //this is the starting point of the execution.
 
-
+//stateless is a widget which has immutable state(It is information that can be read synchronously when the widget is built) when user interacts with it
 class MyApp extends StatelessWidget{
   @override
-  Widget build(BuildContext context)
+  Widget build(BuildContext context) //this build function is used to build the widget.
   {
     return new MaterialApp(
       theme: new ThemeData(primarySwatch: Colors.pink,
       primaryColor: defaultTargetPlatform == TargetPlatform.iOS ? Colors.grey[50] : null),
       home: new HomePage(),
-
+      //The routes property defines the available named routes and 
+      //the widgets to build when navigating to those routes.
       routes: <String,WidgetBuilder>{
-        '/a':(BuildContext context) => new Page1("Settings Page"), 
+        // When navigating to the "/a" route, build the Settings Page widget.
+        '/a':(BuildContext context) => new Page1("Settings Page"),
+         // When navigating to the "/b" route, build the Notification widget. 
         '/b':(BuildContext context) => new Page2("Notification Page"),
+         // When navigating to the "/c" route, build the Payment Page widget.
         '/c':(BuildContext context) => new Page3("Payment Page"),
         
       },
@@ -37,6 +41,7 @@ class HomePage extends StatelessWidget{
     return new Scaffold(
         appBar: new AppBar(
           title: new Text("Navigation Drawer App"),
+          //elevation property is used to set elevation to AppBar in Android Device.
           elevation: defaultTargetPlatform == TargetPlatform.android ?5.0 : 0.0,
         ) ,
 
@@ -45,6 +50,7 @@ class HomePage extends StatelessWidget{
           // ListView is used to create  static list of items.  
           child: new ListView(
             children: <Widget>[
+              //useraccountsdrawerheader is used to show user accounts details on drawer.
               new UserAccountsDrawerHeader(
                  accountName: new Text("Ganesh"),
                  accountEmail: new Text("ganesh@gmail.com"),
@@ -67,7 +73,7 @@ class HomePage extends StatelessWidget{
                    //onTap widget is used for providing triggering an event.
                    onTap: () {
                      Navigator.of(context).pop(); // this statement is used to close the drawer.
-                     Navigator.of(context).pushNamed("/a"); // this statement is used navigate to specified route or page.
+                     Navigator.of(context).pushNamed("/a"); // this statement is used navigate to specified route or page using named route='/a'.
                      },
               ),
               
